@@ -32,8 +32,8 @@ document.addEventListener("mousemove", (e) => {
     const game = document.querySelector(".game");
     const gameRect = game.getBoundingClientRect();
 
-    let x = e.clientX - offsetX;
-    let y = e.clientY - offsetY;
+    let x = e.clientX - gameRect.left - offsetX;
+    let y = e.clientY - gameRect.top - offsetY;
 
     // Giới hạn trong khung game
     x = Math.max(
