@@ -71,7 +71,7 @@ checkBtn.addEventListener("click", () => {
 
     const answer = answerInput.value.trim().toLowerCase();
 
-    if(answer === "giai cap"){
+    if(answer === "ganh dua"){
 
         window.location.href = "index4.html";
 
