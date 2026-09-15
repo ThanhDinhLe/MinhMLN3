@@ -4,6 +4,25 @@ let currentLeaf = null;
 let offsetX = 0;
 let offsetY = 0;
 let zIndexCounter = 100;
+let sceneScale = 1;
+
+// Scale toàn bộ bố cục chuẩn 1486 × 686, thay vì scale nền và leaf riêng lẻ.
+function fitGameScene() {
+    const scene = document.querySelector(".game-scene");
+    const sceneWidth = 1486;
+    const sceneHeight = 686;
+
+    sceneScale = Math.min(
+        window.innerWidth / sceneWidth,
+        window.innerHeight / sceneHeight
+    );
+    scene.style.left = (window.innerWidth - sceneWidth * sceneScale) / 2 + "px";
+    scene.style.top = (window.innerHeight - sceneHeight * sceneScale) / 2 + "px";
+    scene.style.transform = `scale(${sceneScale})`;
+}
+
+fitGameScene();
+window.addEventListener("resize", fitGameScene);
 
 leaves.forEach(leaf => {
 
@@ -18,8 +37,8 @@ leaves.forEach(leaf => {
 
         const rect = currentLeaf.getBoundingClientRect();
 
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
+        offsetX = (e.clientX - rect.left) / sceneScale;
+        offsetY = (e.clientY - rect.top) / sceneScale;
 
     });
 
@@ -29,18 +48,18 @@ document.addEventListener("mousemove", (e) => {
 
     if (!currentLeaf) return;
 
-    const game = document.querySelector(".game");
-    const gameRect = game.getBoundingClientRect();
+    const scene = document.querySelector(".game-scene");
+    const sceneRect = scene.getBoundingClientRect();
 
-    let x = e.clientX - gameRect.left - offsetX;
-    let y = e.clientY - gameRect.top - offsetY;
+    let x = (e.clientX - sceneRect.left) / sceneScale - offsetX;
+    let y = (e.clientY - sceneRect.top) / sceneScale - offsetY;
 
     // Giới hạn trong khung game
     x = Math.max(
         -currentLeaf.offsetWidth / 2,
         Math.min(
             x,
-            gameRect.width - currentLeaf.offsetWidth / 2
+            1486 - currentLeaf.offsetWidth / 2
         )
     );
 
@@ -48,7 +67,7 @@ document.addEventListener("mousemove", (e) => {
         -currentLeaf.offsetHeight / 2,
         Math.min(
             y,
-            gameRect.height - currentLeaf.offsetHeight / 2
+            686 - currentLeaf.offsetHeight / 2
         )
     );
 
