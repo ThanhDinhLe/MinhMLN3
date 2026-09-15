@@ -90,7 +90,7 @@ checkBtn.addEventListener("click", () => {
 
     const answer = answerInput.value.trim().toLowerCase();
 
-    if(answer === "ngan phieu"){
+    if(answer === "nhan quyen"){
 
         window.location.href = "index5.html";
 
