@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Màn hình bắt đầu -->
+<div id="startScreen">
+    <button id="startBtn">BẮT ĐẦU TRÒ CHƠI</button>
+</div>
+
+<!-- Nội dung game -->
+<div id="gameScreen">
+
+    <div class="game">
+
+        <img src="newSource/bg1.png" class="background">
+
+        <img src="newSource/la1.svg" class="leaf leaf1">
+        <img src="newSource/la2.svg" class="leaf leaf2">
+        <img src="newSource/la3.svg" class="leaf leaf3">
+        <img src="newSource/la4.svg" class="leaf leaf4">
+      
+
+        <div class="answer-container">
+            <input type="text" id="answerInput" placeholder="Nhập đáp án...">
+            <button id="checkBtn">Kiểm tra</button>
+            <span id="message"></span>
+        </div>
+
+    </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
